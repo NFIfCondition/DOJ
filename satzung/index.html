@@ -1,0 +1,778 @@
+<title>Satzung — Department of Justice</title>
+
+<style>
+  :root{
+    --bg: #f6f3ec;
+    --paper: #fffdf9;
+    --ink: #1f2430;
+    --ink-soft: #4b5163;
+    --muted: #7a7f8c;
+    --line: rgba(31,36,48,0.12);
+    --line-strong: rgba(31,36,48,0.22);
+    --accent: #8a6a2f;
+    --accent-strong: #6b5122;
+    --accent-tint: rgba(138,106,47,0.10);
+    --accent-tint-strong: rgba(138,106,47,0.18);
+    --chip-bg: rgba(31,36,48,0.06);
+    --shadow: rgba(31,25,10,0.10);
+    --sidebar-bg: #efe9dc;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #14161c;
+      --paper: #1a1d25;
+      --ink: #e9e6de;
+      --ink-soft: #c2c3ca;
+      --muted: #8c8f9c;
+      --line: rgba(233,230,222,0.12);
+      --line-strong: rgba(233,230,222,0.22);
+      --accent: #cda155;
+      --accent-strong: #e0b46c;
+      --accent-tint: rgba(205,161,85,0.12);
+      --accent-tint-strong: rgba(205,161,85,0.2);
+      --chip-bg: rgba(233,230,222,0.08);
+      --shadow: rgba(0,0,0,0.4);
+      --sidebar-bg: #191b22;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #14161c;
+    --paper: #1a1d25;
+    --ink: #e9e6de;
+    --ink-soft: #c2c3ca;
+    --muted: #8c8f9c;
+    --line: rgba(233,230,222,0.12);
+    --line-strong: rgba(233,230,222,0.22);
+    --accent: #cda155;
+    --accent-strong: #e0b46c;
+    --accent-tint: rgba(205,161,85,0.12);
+    --accent-tint-strong: rgba(205,161,85,0.2);
+    --chip-bg: rgba(233,230,222,0.08);
+    --shadow: rgba(0,0,0,0.4);
+    --sidebar-bg: #191b22;
+  }
+
+  *{ box-sizing: border-box; }
+  html{
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar{ display:none; width:0; height:0; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } *{ transition: none !important; animation: none !important; } }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .shell{
+    display: grid;
+    grid-template-columns: 300px minmax(0,1fr);
+    min-height: 100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--line);
+    padding: 2.5rem 1.75rem 3rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .sidebar::-webkit-scrollbar{ display:none; width:0; height:0; }
+  .brand{
+    display:flex;
+    align-items:flex-start;
+    gap:.85rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand-mark{
+    flex: none;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 3px;
+    background: linear-gradient(160deg, var(--accent), var(--accent-strong));
+    color: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .brand-text .eyebrow{
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .brand-text .title{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: .15rem;
+  }
+
+  nav.toc{ font-size: .9rem; }
+  .toc-part{ margin-bottom: 2.35rem; }
+  .toc-part-label{
+    display:flex;
+    align-items:baseline;
+    gap:.5rem;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 700;
+    margin-bottom: .8rem;
+  }
+  .toc-part-label .part-title{
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    text-transform: none;
+    font-weight: 600;
+  }
+  .toc ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.15rem; }
+  .toc li{ margin: 0; }
+  .toc a{
+    display:flex;
+    gap:.55rem;
+    align-items:baseline;
+    padding: .5rem .6rem;
+    margin-left: -.6rem;
+    border-radius: 6px;
+    color: var(--ink-soft);
+    text-decoration:none;
+    line-height: 1.4;
+    transition: background-color .15s, color .15s;
+  }
+  .toc a .sec-no{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    color: var(--muted);
+    font-size: .82em;
+    flex: none;
+  }
+  .toc a:hover{ background: var(--chip-bg); color: var(--ink); }
+  .toc a:focus-visible{ outline: 2px solid var(--accent); outline-offset: 1px; }
+  .toc a.active{
+    background: var(--accent-tint-strong);
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .toc a.active .sec-no{ color: var(--accent-strong); }
+
+  .sidebar-foot{
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: .72rem;
+    color: var(--muted);
+  }
+  .sidebar-foot a{ color: var(--accent-strong); text-decoration: underline; text-decoration-color: var(--accent-tint-strong); }
+  .sidebar-foot a:hover{ text-decoration-color: var(--accent-strong); }
+
+  /* ---------- Main content ---------- */
+  main{
+    padding: 4.5rem 5vw 8rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .cover{
+    margin-bottom: 3rem;
+    padding-bottom: 2.75rem;
+    border-bottom: 2px solid var(--line-strong);
+  }
+  .cover .eyebrow{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+  h1.doc-title{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
+    line-height: 1.15;
+    margin: .6rem 0 .9rem;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  .cover .lede{
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 34em;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap: wrap;
+    gap: .6rem 2rem;
+    margin-top: 1.75rem;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .meta-row strong{ color: var(--ink-soft); font-weight: 600; }
+
+  .preamble{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 3.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    line-height: 1.65;
+    color: var(--ink);
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+  .preamble .preamble-label{
+    display:block;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-style: normal;
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: .9rem;
+  }
+
+  .part-divider{
+    display:flex;
+    align-items:center;
+    gap: 1.1rem;
+    margin: 5.5rem 0 .75rem;
+  }
+  .part-divider:first-of-type{ margin-top: 0; }
+  .part-divider .part-tag{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    color: var(--paper);
+    background: var(--accent);
+    padding: .3rem .65rem;
+    border-radius: 3px;
+    flex: none;
+  }
+  .part-divider h2{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink);
+  }
+  .part-divider .rule{ flex:1; height:1px; background: var(--line-strong); }
+  .part-intro{
+    color: var(--muted);
+    font-size: .95rem;
+    margin: 0 0 2.5rem;
+    max-width: 34em;
+  }
+
+  section.paragraph{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 2.25rem 2.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px var(--shadow);
+    scroll-margin-top: 2rem;
+  }
+
+  .p-head{
+    display:flex;
+    align-items: baseline;
+    gap: .85rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .p-num{
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    color: var(--accent-strong);
+    font-size: 1.1rem;
+    flex: none;
+  }
+  .p-head h3{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .absatz-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+  .absatz-list li{
+    display: flex;
+    gap: .8rem;
+  }
+  .absatz-list .abs-no{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    color: var(--muted);
+    font-size: .85em;
+    flex: none;
+    padding-top: .1em;
+  }
+  .absatz-list p{ margin: 0; color: var(--ink); max-width: 74ch; }
+  .absatz-list a{ color: var(--accent-strong); text-decoration: underline; text-decoration-color: var(--accent-tint-strong); }
+  .absatz-list a:hover{ text-decoration-color: var(--accent-strong); }
+
+  .maxim{
+    display:inline-block;
+    margin-left: .4em;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  footer.doc-end{
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--line-strong);
+    color: var(--muted);
+    font-size: .85rem;
+  }
+
+  .mobile-toggle{ display:none; }
+  .scrim{ display:none; }
+
+  @media (max-width: 860px){
+    .shell{ grid-template-columns: 1fr; }
+    .sidebar{
+      position: fixed;
+      inset: 0 30% 0 0;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform .2s ease;
+      box-shadow: 4px 0 24px var(--shadow);
+    }
+    .sidebar.open{ transform: translateX(0); }
+    .mobile-toggle{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: .9rem 4vw;
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .scrim{ display:none; }
+    .scrim.open{
+      display:block;
+      position: fixed; inset:0; z-index: 15;
+      background: rgba(0,0,0,.35);
+    }
+    main{ padding: 2rem 6vw 6rem; }
+    section.paragraph{ padding: 1.6rem 1.4rem; }
+  }
+</style>
+
+<div class="shell">
+  <button class="mobile-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">☰ Inhaltsverzeichnis</button>
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">⚖</div>
+      <div class="brand-text">
+        <div class="eyebrow">Department of Justice</div>
+        <div class="title">Satzung</div>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Inhaltsverzeichnis">
+      <div class="toc-part">
+        <div class="toc-part-label"><span class="part-title">Präambel</span></div>
+        <ul>
+          <li><a href="#praeambel"><span class="sec-no">·</span> Präambel</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Titel I</span><span class="part-title">Allgemeine Bestimmungen</span></div>
+        <ul>
+          <li><a href="#a1"><span class="sec-no">Art. 1</span> Zweck und Stellung</a></li>
+          <li><a href="#a2"><span class="sec-no">Art. 2</span> Begriffsbestimmungen</a></li>
+          <li><a href="#a3"><span class="sec-no">Art. 3</span> Rangfolge der Regelwerke</a></li>
+          <li><a href="#a4"><span class="sec-no">Art. 4</span> Auslegung</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Titel II</span><span class="part-title">Organe</span></div>
+        <ul>
+          <li><a href="#a5"><span class="sec-no">Art. 5</span> Organe des DOJ</a></li>
+          <li><a href="#a6"><span class="sec-no">Art. 6</span> Leitung</a></li>
+          <li><a href="#a7"><span class="sec-no">Art. 7</span> Staatsanwaltschaft</a></li>
+          <li><a href="#a8"><span class="sec-no">Art. 8</span> Richterschaft</a></li>
+          <li><a href="#a9"><span class="sec-no">Art. 9</span> Pflichtverteidigung</a></li>
+          <li><a href="#a10"><span class="sec-no">Art. 10</span> Kanzlei</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Titel III</span><span class="part-title">Ämter &amp; Rangordnung</span></div>
+        <ul>
+          <li><a href="#a11"><span class="sec-no">Art. 11</span> Ämterprinzip</a></li>
+          <li><a href="#a12"><span class="sec-no">Art. 12</span> Ämter der Leitung</a></li>
+          <li><a href="#a13"><span class="sec-no">Art. 13</span> Ämter der Staatsanwaltschaft</a></li>
+          <li><a href="#a14"><span class="sec-no">Art. 14</span> Ämter der Richterschaft</a></li>
+          <li><a href="#a15"><span class="sec-no">Art. 15</span> Amt der Pflichtverteidigung</a></li>
+          <li><a href="#a16"><span class="sec-no">Art. 16</span> Amt der Kanzlei</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Titel IV</span><span class="part-title">Verfahrensgrundsätze</span></div>
+        <ul>
+          <li><a href="#a17"><span class="sec-no">Art. 17</span> Unschuldsvermutung</a></li>
+          <li><a href="#a18"><span class="sec-no">Art. 18</span> Rechtliches Gehör</a></li>
+          <li><a href="#a19"><span class="sec-no">Art. 19</span> Verhältnismäßigkeit</a></li>
+          <li><a href="#a20"><span class="sec-no">Art. 20</span> Ne bis in idem</a></li>
+          <li><a href="#a21"><span class="sec-no">Art. 21</span> Verjährung</a></li>
+          <li><a href="#a22"><span class="sec-no">Art. 22</span> Instanzenzug</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Titel V</span><span class="part-title">Schlussbestimmungen</span></div>
+        <ul>
+          <li><a href="#a23"><span class="sec-no">Art. 23</span> Änderung dieser Satzung</a></li>
+          <li><a href="#a24"><span class="sec-no">Art. 24</span> Inkrafttreten</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sidebar-foot">Die <a href="../dienstregeln/">Dienstregeln des Department of Justice</a> ergänzen diese Satzung um operative Vorschriften.</div>
+  </aside>
+
+  <main>
+    <div class="cover">
+      <div class="eyebrow">Grundordnung</div>
+      <h1 class="doc-title">Satzung des Department of Justice</h1>
+      <p class="lede">Die Satzung bildet die rechtliche Grundordnung des Department of Justice: Zweck, Organe, Ämter und die grundlegenden Verfahrensprinzipien, nach denen es handelt.</p>
+      <div class="meta-row">
+        <span><strong>Fassung:</strong> 12. August 2026</span>
+        <span><strong>Rang:</strong> geht allen internen Regelwerken vor</span>
+        <span><strong>Herausgeber:</strong> Leitung des Department of Justice</span>
+      </div>
+    </div>
+
+    <div class="preamble" id="praeambel">
+      <span class="preamble-label">Präambel</span>
+      Das Department of Justice ist die unabhängige juristische Institution der Stadt. Diese Satzung bildet seine rechtliche Grundordnung: Sie legt Zweck, Organe, Ämter und die grundlegenden Verfahrensprinzipien fest, nach denen das Department of Justice handelt. Alle nachgeordneten Regelwerke — insbesondere die Dienstregeln — sind an dieser Satzung auszurichten.
+    </div>
+
+    <!-- TITEL I -->
+    <div class="part-divider" id="titel-1">
+      <span class="part-tag">TITEL I</span>
+      <h2>Allgemeine Bestimmungen</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Grundbegriffe, Geltungsbereich und Auslegungsgrundsätze.</p>
+
+    <section class="paragraph" id="a1">
+      <div class="p-head"><span class="p-num">Art. 1</span><h3>Zweck und Stellung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Das Department of Justice gewährleistet die einheitliche Auslegung und Anwendung der Gesetze der Stadt sowie die rechtliche Kontrolle staatlicher Maßnahmen.</p></li>
+        <li><span class="abs-no">(2)</span><p>Es ist in seinen juristischen Entscheidungen unabhängig und keiner Weisung der Regierung oder der Exekutivbehörden unterworfen.</p></li>
+        <li><span class="abs-no">(3)</span><p>Diese Unabhängigkeit gilt uneingeschränkt für die Richterschaft; für die übrigen Organe gilt sie im Rahmen ihrer jeweiligen gesetzlichen Zuständigkeit.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a2">
+      <div class="p-head"><span class="p-num">Art. 2</span><h3>Begriffsbestimmungen</h3></div>
+      <p style="margin:0 0 1.35rem; color:var(--ink-soft);">Im Sinne dieser Satzung und der auf ihr beruhenden Regelwerke bedeuten:</p>
+      <ol class="absatz-list">
+        <li><span class="abs-no">a)</span><p><strong>Mitglied</strong> — jede Person, die ein Amt nach Titel III innehat.</p></li>
+        <li><span class="abs-no">b)</span><p><strong>Verfahren</strong> — die Gesamtheit der Schritte von Anzeige oder Ermittlungsübergabe bis zur rechtskräftigen Entscheidung.</p></li>
+        <li><span class="abs-no">c)</span><p><strong>Rechtskraft</strong> — der Zustand, in dem eine Entscheidung nicht mehr mit ordentlichen Rechtsmitteln angefochten werden kann.</p></li>
+        <li><span class="abs-no">d)</span><p><strong>Instanz</strong> — die jeweilige Entscheidungsebene eines Verfahrens (erste Instanz, Rechtsmittelinstanz).</p></li>
+        <li><span class="abs-no">e)</span><p><strong>Organ</strong> — eine der in Titel II genannten Organisationseinheiten des Department of Justice.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a3">
+      <div class="p-head"><span class="p-num">Art. 3</span><h3>Rangfolge der Regelwerke</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Für das Handeln des Department of Justice gelten in dieser Reihenfolge: die Gesetze der Stadt, diese Satzung, die Dienstregeln, sowie Verordnungen der Leitung.</p></li>
+        <li><span class="abs-no">(2)</span><p>Eine nachrangige Regelung, die einer vorrangigen widerspricht, ist insoweit unwirksam.</p></li>
+        <li><span class="abs-no">(3)</span><p>Bestehen zwischen zwei Bestimmungen gleichen Rangs Widersprüche, geht die spätere der früheren und die speziellere der allgemeineren Regelung vor.<span class="maxim">(lex posterior, lex specialis)</span></p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a4">
+      <div class="p-head"><span class="p-num">Art. 4</span><h3>Auslegung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Bestimmungen dieser Satzung und der nachgeordneten Regelwerke sind, soweit es um die Frage einer Pflichtverletzung oder Straftat geht, im Zweifel zugunsten der geprüften Person auszulegen.<span class="maxim">(in dubio pro reo)</span></p></li>
+        <li><span class="abs-no">(2)</span><p>Im Übrigen ist die Auslegung zu wählen, die dem Zweck nach Art. 1 am besten entspricht.</p></li>
+      </ol>
+    </section>
+
+    <!-- TITEL II -->
+    <div class="part-divider" id="titel-2">
+      <span class="part-tag">TITEL II</span>
+      <h2>Organe</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Die Organisationseinheiten des Department of Justice und ihre Kompetenzen.</p>
+
+    <section class="paragraph" id="a5">
+      <div class="p-head"><span class="p-num">Art. 5</span><h3>Organe des Department of Justice</h3></div>
+      <p style="margin:0 0 1.35rem; color:var(--ink-soft);">Das Department of Justice besteht aus folgenden Organen:</p>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p>der Leitung</p></li>
+        <li><span class="abs-no">2.</span><p>der Staatsanwaltschaft</p></li>
+        <li><span class="abs-no">3.</span><p>der Richterschaft</p></li>
+        <li><span class="abs-no">4.</span><p>der Pflichtverteidigung</p></li>
+        <li><span class="abs-no">5.</span><p>der Kanzlei</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a6">
+      <div class="p-head"><span class="p-num">Art. 6</span><h3>Leitung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Leitung vertritt das Department of Justice nach außen und trägt die organisatorische Gesamtverantwortung.</p></li>
+        <li><span class="abs-no">(2)</span><p>Sie entscheidet über Einstellung, Beförderung, Suspendierung und Entlassung innerhalb der Staatsanwaltschaft, der Pflichtverteidigung und der Kanzlei.</p></li>
+        <li><span class="abs-no">(3)</span><p>Bei Personalentscheidungen innerhalb der Richterschaft wirkt sie gemeinsam mit den Richtern mit; auf richterliche Entscheidungen im Einzelfall nimmt sie keinen Einfluss.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a7">
+      <div class="p-head"><span class="p-num">Art. 7</span><h3>Staatsanwaltschaft</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Staatsanwaltschaft führt die Anklage.</p></li>
+        <li><span class="abs-no">(2)</span><p>Ihr obliegt das Anklagemonopol: Eine Anklage vor Gericht kann ausschließlich durch die Staatsanwaltschaft erhoben werden.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a8">
+      <div class="p-head"><span class="p-num">Art. 8</span><h3>Richterschaft</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Richterschaft entscheidet unabhängig über die ihr vorgelegten Verfahren.</p></li>
+        <li><span class="abs-no">(2)</span><p>Sie verwaltet sich in organisatorischen Angelegenheiten selbst; die Entscheidungsfindung im Einzelfall unterliegt keiner Aufsicht durch andere Organe.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a9">
+      <div class="p-head"><span class="p-num">Art. 9</span><h3>Pflichtverteidigung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Pflichtverteidigung stellt sicher, dass jede beschuldigte oder angeklagte Person unabhängig von ihren finanziellen Möglichkeiten rechtlich vertreten werden kann.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a10">
+      <div class="p-head"><span class="p-num">Art. 10</span><h3>Kanzlei</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Kanzlei unterstützt die übrigen Organe in Verwaltungsangelegenheiten, insbesondere Aktenführung, Terminplanung und Publikumsverkehr.</p></li>
+        <li><span class="abs-no">(2)</span><p>Sie trifft keine juristischen Entscheidungen.</p></li>
+      </ol>
+    </section>
+
+    <!-- TITEL III -->
+    <div class="part-divider" id="titel-3">
+      <span class="part-tag">TITEL III</span>
+      <h2>Ämter und Rangordnung</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Die innerhalb der Organe geführten Ämter, ihre deutsche Bezeichnung und ihre Stellung in der Rangordnung.</p>
+
+    <section class="paragraph" id="a11">
+      <div class="p-head"><span class="p-num">Art. 11</span><h3>Ämterprinzip</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Jedes Mitglied handelt ausschließlich innerhalb der seinem Amt zugewiesenen Befugnisse.</p></li>
+        <li><span class="abs-no">(2)</span><p>Ein höheres Amt innerhalb desselben Organs umfasst die Befugnisse der ihm nachgeordneten Ämter, sofern diese Satzung nichts Abweichendes bestimmt.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a12">
+      <div class="p-head"><span class="p-num">Art. 12</span><h3>Ämter der Leitung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p><strong>General Attorney</strong> — Generalstaatsanwalt; höchstes Amt des Department of Justice.</p></li>
+        <li><span class="abs-no">2.</span><p><strong>Deputy General Attorney</strong> — Stellvertretender Generalstaatsanwalt.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a13">
+      <div class="p-head"><span class="p-num">Art. 13</span><h3>Ämter der Staatsanwaltschaft</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p><strong>Assistant Prosecutor</strong> — Staatsanwaltsanwärter; Bearbeitung von Akten unter Aufsicht.</p></li>
+        <li><span class="abs-no">2.</span><p><strong>Junior Prosecutor</strong> — Staatsanwalt; eigenständige Aktenbearbeitung.</p></li>
+        <li><span class="abs-no">3.</span><p><strong>State Attorney</strong> — Staatsanwalt; Bearbeitung komplexer und schwerer Verfahren.</p></li>
+        <li><span class="abs-no">4.</span><p><strong>Chief Prosecutor</strong> — Oberstaatsanwalt; koordiniert die Staatsanwaltschaft.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a14">
+      <div class="p-head"><span class="p-num">Art. 14</span><h3>Ämter der Richterschaft</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p><strong>Assistant Judge</strong> — Richteranwärter; wirkt unter Aufsicht an Verfahren mit.</p></li>
+        <li><span class="abs-no">2.</span><p><strong>Judge</strong> — Richter; leitet Verhandlungen und entscheidet eigenständig.</p></li>
+        <li><span class="abs-no">3.</span><p><strong>Senior Judge</strong> — Oberster Richter; organisatorische Leitung der Richterschaft.</p></li>
+        <li><span class="abs-no">4.</span><p><strong>Supreme Judge</strong> — höchstes richterliches Amt; entscheidet über die bedeutendsten Verfahren und letztinstanzliche Rechtsmittel.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a15">
+      <div class="p-head"><span class="p-num">Art. 15</span><h3>Amt der Pflichtverteidigung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p><strong>Public Defender</strong> — Pflichtverteidiger; einziges Amt dieses Organs.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a16">
+      <div class="p-head"><span class="p-num">Art. 16</span><h3>Amt der Kanzlei</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">1.</span><p><strong>Secretary</strong> — Kanzleikraft; einziges Amt dieses Organs.</p></li>
+      </ol>
+    </section>
+
+    <!-- TITEL IV -->
+    <div class="part-divider" id="titel-4">
+      <span class="part-tag">TITEL IV</span>
+      <h2>Verfahrensgrundsätze</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Grundlegende rechtliche Prinzipien, die in jedem Verfahren des Department of Justice gelten.</p>
+
+    <section class="paragraph" id="a17">
+      <div class="p-head"><span class="p-num">Art. 17</span><h3>Unschuldsvermutung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Jede Person gilt bis zur Rechtskraft einer Entscheidung als unschuldig.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a18">
+      <div class="p-head"><span class="p-num">Art. 18</span><h3>Rechtliches Gehör</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Niemand darf einer Entscheidung unterworfen werden, ohne zuvor die Möglichkeit erhalten zu haben, sich zu den maßgeblichen Tatsachen zu äußern.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a19">
+      <div class="p-head"><span class="p-num">Art. 19</span><h3>Verhältnismäßigkeit</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Maßnahmen, die in Rechte einer Person eingreifen, müssen zur Erreichung ihres Zwecks geeignet, erforderlich und im engeren Sinne angemessen sein.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a20">
+      <div class="p-head"><span class="p-num">Art. 20</span><h3>Ne bis in idem</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Niemand darf für dieselbe Tat, über die bereits rechtskräftig entschieden wurde, erneut vor Gericht gestellt werden.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a21">
+      <div class="p-head"><span class="p-num">Art. 21</span><h3>Verjährung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Verfahren, die nicht innerhalb einer nach der Schwere der zugrunde liegenden Tat angemessenen Frist eingeleitet werden, können auf Antrag der betroffenen Person als verjährt eingestellt werden.</p></li>
+        <li><span class="abs-no">(2)</span><p>Über den Antrag entscheidet die Richterschaft.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a22">
+      <div class="p-head"><span class="p-num">Art. 22</span><h3>Instanzenzug</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Gegen Entscheidungen der ersten Instanz ist Berufung an eine andere besetzte Richterbank zulässig.</p></li>
+        <li><span class="abs-no">(2)</span><p>Über Berufungen, die ein Verfahren von grundsätzlicher Bedeutung betreffen, entscheidet vorrangig ein Supreme Judge.</p></li>
+      </ol>
+    </section>
+
+    <!-- TITEL V -->
+    <div class="part-divider" id="titel-5">
+      <span class="part-tag">TITEL V</span>
+      <h2>Schlussbestimmungen</h2>
+      <span class="rule"></span>
+    </div>
+
+    <section class="paragraph" id="a23">
+      <div class="p-head"><span class="p-num">Art. 23</span><h3>Änderung dieser Satzung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Diese Satzung kann durch die Leitung geändert werden.</p></li>
+        <li><span class="abs-no">(2)</span><p>Änderungen, die die Unabhängigkeit oder Zuständigkeiten der Richterschaft betreffen, bedürfen der Zustimmung der Richterschaft.</p></li>
+        <li><span class="abs-no">(3)</span><p>Änderungen dürfen den Gesetzen der Stadt nicht widersprechen.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="a24">
+      <div class="p-head"><span class="p-num">Art. 24</span><h3>Inkrafttreten</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Diese Satzung tritt mit Bekanntgabe in Kraft und geht allen nachgeordneten Regelwerken des Department of Justice vor.</p></li>
+      </ol>
+    </section>
+
+    <footer class="doc-end">Satzung des Department of Justice · Fassung 12. August 2026</footer>
+  </main>
+</div>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var sidebar = document.getElementById('sidebar');
+    var scrim = document.getElementById('scrim');
+    function closeNav(){
+      sidebar.classList.remove('open');
+      scrim.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+    toggle.addEventListener('click', function(){
+      var open = sidebar.classList.toggle('open');
+      scrim.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    scrim.addEventListener('click', closeNav);
+    sidebar.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeNav);
+    });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+    var byId = {};
+    links.forEach(function(a, i){ if(sections[i]) byId[sections[i].id] = a; });
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var link = byId[entry.target.id];
+        if(!link) return;
+        if(entry.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+
+    sections.forEach(function(s){ if(s) observer.observe(s); });
+  })();
+</script>

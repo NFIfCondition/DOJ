@@ -1,5 +1,9 @@
-<title>Dienstregeln — Department of Justice</title>
-
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rechtsdokumente — Department of Justice</title>
 <style>
   :root{
     --bg: #f6f3ec;
@@ -11,711 +15,80 @@
     --line-strong: rgba(31,36,48,0.22);
     --accent: #8a6a2f;
     --accent-strong: #6b5122;
-    --accent-tint: rgba(138,106,47,0.10);
-    --accent-tint-strong: rgba(138,106,47,0.18);
-    --chip-bg: rgba(31,36,48,0.06);
     --shadow: rgba(31,25,10,0.10);
-    --sidebar-bg: #efe9dc;
   }
-
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg: #14161c;
-      --paper: #1a1d25;
-      --ink: #e9e6de;
-      --ink-soft: #c2c3ca;
-      --muted: #8c8f9c;
-      --line: rgba(233,230,222,0.12);
-      --line-strong: rgba(233,230,222,0.22);
-      --accent: #cda155;
-      --accent-strong: #e0b46c;
-      --accent-tint: rgba(205,161,85,0.12);
-      --accent-tint-strong: rgba(205,161,85,0.2);
-      --chip-bg: rgba(233,230,222,0.08);
-      --shadow: rgba(0,0,0,0.4);
-      --sidebar-bg: #191b22;
+      --bg: #14161c; --paper: #1a1d25; --ink: #e9e6de; --ink-soft: #c2c3ca; --muted: #8c8f9c;
+      --line: rgba(233,230,222,0.12); --line-strong: rgba(233,230,222,0.22);
+      --accent: #cda155; --accent-strong: #e0b46c; --shadow: rgba(0,0,0,0.4);
     }
   }
   :root[data-theme="dark"]{
-    --bg: #14161c;
-    --paper: #1a1d25;
-    --ink: #e9e6de;
-    --ink-soft: #c2c3ca;
-    --muted: #8c8f9c;
-    --line: rgba(233,230,222,0.12);
-    --line-strong: rgba(233,230,222,0.22);
-    --accent: #cda155;
-    --accent-strong: #e0b46c;
-    --accent-tint: rgba(205,161,85,0.12);
-    --accent-tint-strong: rgba(205,161,85,0.2);
-    --chip-bg: rgba(233,230,222,0.08);
-    --shadow: rgba(0,0,0,0.4);
-    --sidebar-bg: #191b22;
+    --bg: #14161c; --paper: #1a1d25; --ink: #e9e6de; --ink-soft: #c2c3ca; --muted: #8c8f9c;
+    --line: rgba(233,230,222,0.12); --line-strong: rgba(233,230,222,0.22);
+    --accent: #cda155; --accent-strong: #e0b46c; --shadow: rgba(0,0,0,0.4);
   }
-
   *{ box-sizing: border-box; }
-  html{
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  html::-webkit-scrollbar{ display:none; width:0; height:0; }
-  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } *{ transition: none !important; animation: none !important; } }
-
   body{
-    margin:0;
-    background: var(--bg);
-    color: var(--ink);
+    margin:0; min-height:100vh;
+    background: var(--bg); color: var(--ink);
     font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 17px;
-    line-height: 1.7;
-  }
-
-  .shell{
-    display: grid;
-    grid-template-columns: 300px minmax(0,1fr);
-    min-height: 100vh;
-  }
-
-  /* ---------- Sidebar ---------- */
-  .sidebar{
-    background: var(--sidebar-bg);
-    border-right: 1px solid var(--line);
-    padding: 2.5rem 1.75rem 3rem;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .sidebar::-webkit-scrollbar{ display:none; width:0; height:0; }
-  .brand{
-    display:flex;
-    align-items:flex-start;
-    gap:.85rem;
-    margin-bottom: 2.25rem;
-    padding-bottom: 1.75rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .brand-mark{
-    flex: none;
-    width: 2.5rem; height: 2.5rem;
-    border-radius: 3px;
-    background: linear-gradient(160deg, var(--accent), var(--accent-strong));
-    color: var(--paper);
     display:flex; align-items:center; justify-content:center;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.25rem;
-    box-shadow: 0 2px 8px var(--shadow);
+    padding: 4rem 5vw;
   }
-  .brand-text .eyebrow{
-    font-size: .68rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-  }
-  .brand-text .title{
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.25;
-    margin-top: .15rem;
-  }
-
-  nav.toc{ font-size: .9rem; }
-  .toc-part{ margin-bottom: 2.35rem; }
-  .toc-part-label{
-    display:flex;
-    align-items:baseline;
-    gap:.5rem;
+  .hub{ max-width: 760px; width:100%; }
+  .eyebrow{
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: .68rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--accent-strong);
-    font-weight: 700;
-    margin-bottom: .8rem;
+    font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-strong); font-weight: 700;
   }
-  .toc-part-label .part-title{
-    font-family: -apple-system, "Segoe UI", sans-serif;
-    letter-spacing: 0;
-    color: var(--ink-soft);
-    text-transform: none;
-    font-weight: 600;
-  }
-  .toc ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.15rem; }
-  .toc li{ margin: 0; }
-  .toc a{
-    display:flex;
-    gap:.55rem;
-    align-items:baseline;
-    padding: .5rem .6rem;
-    margin-left: -.6rem;
-    border-radius: 6px;
-    color: var(--ink-soft);
-    text-decoration:none;
-    line-height: 1.4;
-    transition: background-color .15s, color .15s;
-  }
-  .toc a .sec-no{
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    color: var(--muted);
-    font-size: .82em;
-    flex: none;
-  }
-  .toc a:hover{ background: var(--chip-bg); color: var(--ink); }
-  .toc a:focus-visible{ outline: 2px solid var(--accent); outline-offset: 1px; }
-  .toc a.active{
-    background: var(--accent-tint-strong);
-    color: var(--accent-strong);
-    font-weight: 600;
-  }
-  .toc a.active .sec-no{ color: var(--accent-strong); }
-
-  .sidebar-foot{
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
-    font-size: .72rem;
-    color: var(--muted);
-  }
-
-  /* ---------- Main content ---------- */
-  main{
-    padding: 4.5rem 5vw 8rem;
-    max-width: 980px;
-    margin: 0 auto;
-  }
-  .cover{
-    margin-bottom: 4rem;
-    padding-bottom: 2.75rem;
-    border-bottom: 2px solid var(--line-strong);
-  }
-  .cover .eyebrow{
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: .78rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--accent-strong);
-    font-weight: 700;
-  }
-  h1.doc-title{
+  h1{
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2rem, 4.5vw, 2.9rem);
-    line-height: 1.15;
-    margin: .6rem 0 .9rem;
-    text-wrap: balance;
-    font-weight: 700;
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    line-height: 1.15; margin: .6rem 0 .75rem; text-wrap: balance; font-weight: 700;
   }
-  .cover .lede{
-    color: var(--ink-soft);
-    font-size: 1.05rem;
-    max-width: 34em;
-  }
-  .meta-row{
-    display:flex;
-    flex-wrap: wrap;
-    gap: .6rem 2rem;
-    margin-top: 1.75rem;
-    font-size: .85rem;
-    color: var(--muted);
-  }
-  .meta-row strong{ color: var(--ink-soft); font-weight: 600; }
-
-  .part-divider{
-    display:flex;
-    align-items:center;
-    gap: 1.1rem;
-    margin: 5.5rem 0 .75rem;
-  }
-  .part-divider:first-of-type{ margin-top: 0; }
-  .part-divider .part-tag{
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: .75rem;
-    letter-spacing: .08em;
-    color: var(--paper);
-    background: var(--accent);
-    padding: .3rem .65rem;
-    border-radius: 3px;
-    flex: none;
-  }
-  .part-divider h2{
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.65rem;
-    font-weight: 700;
-    margin: 0;
-    color: var(--ink);
-  }
-  .part-divider .rule{ flex:1; height:1px; background: var(--line-strong); }
-  .part-intro{
-    color: var(--muted);
-    font-size: .95rem;
-    margin: 0 0 2.5rem;
-    max-width: 34em;
-  }
-
-  section.paragraph{
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2.25rem 2.25rem;
-    margin-bottom: 2rem;
+  .lede{ color: var(--ink-soft); font-size: 1.05rem; max-width: 34em; margin: 0 0 3rem; }
+  .cards{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 620px){ .cards{ grid-template-columns: 1fr; } }
+  .card{
+    display:block; background: var(--paper); border: 1px solid var(--line);
+    border-radius: 14px; padding: 1.75rem; text-decoration:none; color: var(--ink);
     box-shadow: 0 1px 3px var(--shadow);
-    scroll-margin-top: 2rem;
+    transition: border-color .15s, transform .15s;
   }
-
-  .p-head{
-    display:flex;
-    align-items: baseline;
-    gap: .85rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .p-num{
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 700;
-    color: var(--accent-strong);
-    font-size: 1.1rem;
-    flex: none;
-  }
-  .p-head h3{
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.28rem;
-    font-weight: 700;
-    margin: 0;
-    color: var(--ink);
-    text-wrap: balance;
-  }
-
-  .absatz-list{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.35rem;
-  }
-  .absatz-list li{
-    display: flex;
-    gap: .8rem;
-  }
-  .absatz-list .abs-no{
+  .card:hover{ border-color: var(--accent); transform: translateY(-2px); }
+  .card .tag{
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    color: var(--muted);
-    font-size: .85em;
-    flex: none;
-    padding-top: .1em;
+    font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-strong); font-weight: 700; margin-bottom: .6rem;
   }
-  .absatz-list p{ margin: 0; color: var(--ink); max-width: 74ch; }
-  .absatz-list a{ color: var(--accent-strong); text-decoration: underline; text-decoration-color: var(--accent-tint-strong); }
-  .absatz-list a:hover{ text-decoration-color: var(--accent-strong); }
-
-  .task-table{ margin-top: .2rem; }
-  .task-row{ padding: 0; }
-  .task-row .role{
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: .72rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--accent-strong);
-    margin-bottom: 1rem;
+  .card h2{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem; margin: 0 0 .5rem; color: var(--ink);
   }
-  .task-row ul{ margin: 0; padding-left: 1.3rem; color: var(--ink); display:flex; flex-direction:column; gap:.65rem; }
-  .task-row li{ margin: 0; }
-
-  footer.doc-end{
-    margin-top: 3.5rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid var(--line-strong);
-    color: var(--muted);
-    font-size: .85rem;
-  }
-
-  .mobile-toggle{ display:none; }
-  .scrim{ display:none; }
-
-  @media (max-width: 860px){
-    .shell{ grid-template-columns: 1fr; }
-    .sidebar{
-      position: fixed;
-      inset: 0 30% 0 0;
-      z-index: 20;
-      transform: translateX(-100%);
-      transition: transform .2s ease;
-      box-shadow: 4px 0 24px var(--shadow);
-    }
-    .sidebar.open{ transform: translateX(0); }
-    .mobile-toggle{
-      display:flex;
-      align-items:center;
-      gap:.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: var(--bg);
-      border-bottom: 1px solid var(--line);
-      padding: .9rem 4vw;
-      font-family: ui-monospace, "SF Mono", Consolas, monospace;
-      font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--accent-strong);
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .scrim{ display:none; }
-    .scrim.open{
-      display:block;
-      position: fixed; inset:0; z-index: 15;
-      background: rgba(0,0,0,.35);
-    }
-    main{ padding: 2rem 6vw 6rem; }
-    section.paragraph{ padding: 1.6rem 1.4rem; }
-  }
+  .card p{ margin:0; color: var(--ink-soft); font-size: .92rem; line-height: 1.55; }
+  footer{ margin-top: 3rem; color: var(--muted); font-size: .78rem; }
 </style>
-
-<div class="shell">
-  <button class="mobile-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">☰ Inhaltsverzeichnis</button>
-  <div class="scrim" id="scrim"></div>
-
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <div class="brand-mark">⚖</div>
-      <div class="brand-text">
-        <div class="eyebrow">Department of Justice</div>
-        <div class="title">Dienstregeln</div>
-      </div>
+</head>
+<body>
+  <div class="hub">
+    <div class="eyebrow">Department of Justice</div>
+    <h1>Rechtsdokumente</h1>
+    <p class="lede">Die Satzung bildet die rechtliche Grundordnung des Department of Justice; die Dienstregeln regeln den operativen Dienstbetrieb darauf aufbauend.</p>
+    <div class="cards">
+      <a class="card" href="satzung/">
+        <div class="tag">Grundordnung</div>
+        <h2>Satzung</h2>
+        <p>Zweck, Organe, Ämter und Verfahrensgrundsätze des Department of Justice.</p>
+      </a>
+      <a class="card" href="dienstregeln/">
+        <div class="tag">Internes Regelwerk</div>
+        <h2>Dienstregeln</h2>
+        <p>Dienstverhalten, interne Organisation, Infrastruktur und Aufgabenbereiche.</p>
+      </a>
     </div>
-
-    <nav class="toc" aria-label="Inhaltsverzeichnis">
-      <div class="toc-part">
-        <div class="toc-part-label"><span>Teil A</span><span class="part-title">Allgemeine Dienstregeln</span></div>
-        <ul>
-          <li><a href="#p1"><span class="sec-no">§ 1</span> Geltungsbereich</a></li>
-          <li><a href="#p2"><span class="sec-no">§ 2</span> Verhalten im Dienst</a></li>
-          <li><a href="#p3"><span class="sec-no">§ 3</span> Neutralität &amp; Verschwiegenheit</a></li>
-          <li><a href="#p4"><span class="sec-no">§ 4</span> Dienstzeiten &amp; Erreichbarkeit</a></li>
-          <li><a href="#p5"><span class="sec-no">§ 5</span> Kleiderordnung &amp; Auftreten</a></li>
-          <li><a href="#p6"><span class="sec-no">§ 6</span> Weisungen &amp; Unabhängigkeit</a></li>
-          <li><a href="#p7"><span class="sec-no">§ 7</span> Verstöße &amp; Konsequenzen</a></li>
-        </ul>
-      </div>
-
-      <div class="toc-part">
-        <div class="toc-part-label"><span>Teil B</span><span class="part-title">Regelungen &amp; Infrastruktur</span></div>
-        <ul>
-          <li><a href="#p8"><span class="sec-no">§ 8</span> Organisation &amp; Kommunikationswege</a></li>
-          <li><a href="#p9"><span class="sec-no">§ 9</span> Aktenführung</a></li>
-          <li><a href="#p10"><span class="sec-no">§ 10</span> Kommunikationsmittel</a></li>
-          <li><a href="#p11"><span class="sec-no">§ 11</span> Zugriffsrechte &amp; Datenschutz</a></li>
-          <li><a href="#p12"><span class="sec-no">§ 12</span> Räumlichkeiten &amp; Ausstattung</a></li>
-          <li><a href="#p13"><span class="sec-no">§ 13</span> IT-Sicherheit</a></li>
-        </ul>
-      </div>
-
-      <div class="toc-part">
-        <div class="toc-part-label"><span>Teil C</span><span class="part-title">Aufgabenbereiche</span></div>
-        <ul>
-          <li><a href="#p14"><span class="sec-no">§ 14</span> Leitung</a></li>
-          <li><a href="#p15"><span class="sec-no">§ 15</span> Staatsanwaltschaft</a></li>
-          <li><a href="#p16"><span class="sec-no">§ 16</span> Richterschaft</a></li>
-          <li><a href="#p17"><span class="sec-no">§ 17</span> Rechtsanwaltschaft</a></li>
-          <li><a href="#p18"><span class="sec-no">§ 18</span> Übergreifende Zusammenarbeit</a></li>
-        </ul>
-      </div>
-
-      <div class="toc-part">
-        <div class="toc-part-label"><span>Teil D</span><span class="part-title">Schlussbestimmungen</span></div>
-        <ul>
-          <li><a href="#p19"><span class="sec-no">§ 19</span> Änderungen</a></li>
-          <li><a href="#p20"><span class="sec-no">§ 20</span> Inkrafttreten</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="sidebar-foot">Diese Dienstregeln sind für alle Mitglieder des Department of Justice verbindlich.</div>
-  </aside>
-
-  <main>
-    <div class="cover">
-      <div class="eyebrow">Internes Regelwerk</div>
-      <h1 class="doc-title">Dienstregeln des Department of Justice</h1>
-      <p class="lede">Verbindliche Vorschriften zu Dienstverhalten, interner Organisation, Infrastruktur und Aufgabenbereichen aller Mitglieder des Department of Justice.</p>
-      <div class="meta-row">
-        <span><strong>Fassung:</strong> 12. August 2026</span>
-        <span><strong>Geltung:</strong> alle Ränge und Abteilungen</span>
-        <span><strong>Herausgeber:</strong> Leitung des Department of Justice</span>
-      </div>
-    </div>
-
-    <!-- TEIL A -->
-    <div class="part-divider" id="teil-a">
-      <span class="part-tag">TEIL A</span>
-      <h2>Allgemeine Dienstregeln</h2>
-      <span class="rule"></span>
-    </div>
-    <p class="part-intro">Grundpflichten, die für jedes Mitglied unabhängig von Rang und Abteilung gelten.</p>
-
-    <section class="paragraph" id="p1">
-      <div class="p-head"><span class="p-num">§ 1</span><h3>Geltungsbereich</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Diese Dienstregeln gelten für alle Mitglieder des Department of Justice (nachfolgend „DOJ“) unabhängig von Rang und Abteilung.</p></li>
-        <li><span class="abs-no">(2)</span><p>Sie sind für alle Mitglieder ab dem Zeitpunkt ihrer Einstellung verbindlich.</p></li>
-        <li><span class="abs-no">(3)</span><p>Bei Widersprüchen zwischen diesen Dienstregeln und geltenden Gesetzen oder Entscheidungen der Regierung gehen Letztere vor.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p2">
-      <div class="p-head"><span class="p-num">§ 2</span><h3>Verhalten im Dienst</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Mitglieder haben sich jederzeit sachlich, respektvoll und der Würde des Amtes entsprechend zu verhalten.</p></li>
-        <li><span class="abs-no">(2)</span><p>Gegenüber Bürgern, Behörden und Kollegen ist ein professioneller Umgangston zu wahren, auch in Konfliktsituationen.</p></li>
-        <li><span class="abs-no">(3)</span><p>Persönliche Streitigkeiten sind außerhalb des Dienstes zu klären und dürfen die Dienstausübung nicht beeinträchtigen.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p3">
-      <div class="p-head"><span class="p-num">§ 3</span><h3>Neutralität, Verschwiegenheit und Interessenkonflikte</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Mitglieder entscheiden und handeln unabhängig von persönlichen Beziehungen, Vorteilen oder Interessen.</p></li>
-        <li><span class="abs-no">(2)</span><p>Bei Befangenheit — etwa persönlicher Bekanntschaft mit Beteiligten — ist der Fall unverzüglich an eine unbeteiligte Person abzugeben.</p></li>
-        <li><span class="abs-no">(3)</span><p>Über dienstliche Informationen, insbesondere Akteninhalte, ist gegenüber Unbefugten Stillschweigen zu bewahren; dies gilt auch nach Beendigung der Tätigkeit im DOJ.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p4">
-      <div class="p-head"><span class="p-num">§ 4</span><h3>Dienstzeiten und Erreichbarkeit</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Mitglieder stimmen ihre Verfügbarkeit eigenverantwortlich mit der zuständigen Leitung ab und halten zugesagte Termine ein.</p></li>
-        <li><span class="abs-no">(2)</span><p>Für dringende Fälle außerhalb regulärer Zeiten kann eine Bereitschaft eingerichtet werden; die Ausgestaltung legt die Leitung fest.</p></li>
-        <li><span class="abs-no">(3)</span><p>Längere Abwesenheiten sind rechtzeitig anzumelden, damit Vertretungen organisiert werden können.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p5">
-      <div class="p-head"><span class="p-num">§ 5</span><h3>Kleiderordnung und Auftreten</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Bei Gerichtsverhandlungen und offiziellen Terminen ist formelle Kleidung (Robe bzw. Anzug) zu tragen.</p></li>
-        <li><span class="abs-no">(2)</span><p>Im übrigen Dienstbetrieb ist professionelle, der Institution angemessene Kleidung ausreichend.</p></li>
-        <li><span class="abs-no">(3)</span><p>Sichtbar getragene Dienstwaffen sind nur zulässig, wenn die konkrete Aufgabe dies erfordert.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p6">
-      <div class="p-head"><span class="p-num">§ 6</span><h3>Weisungsgebundenheit und richterliche Unabhängigkeit</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Weisungen der Leitung sind zu befolgen, soweit sie nicht gegen geltendes Recht verstoßen.</p></li>
-        <li><span class="abs-no">(2)</span><p>Richter unterliegen bei ihrer Entscheidungsfindung keinen Weisungen; ihre Unabhängigkeit ist von allen Mitgliedern zu respektieren.</p></li>
-        <li><span class="abs-no">(3)</span><p>Weisungen, die gegen Absatz 1 oder 2 verstoßen, müssen nicht befolgt werden; der Verstoß ist der Leitung bzw. der Richterschaft zu melden.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p7">
-      <div class="p-head"><span class="p-num">§ 7</span><h3>Verstöße und Konsequenzen</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Verstöße gegen diese Dienstregeln werden je nach Schwere mit Verwarnung, Herabstufung, Suspendierung oder Entlassung geahndet.</p></li>
-        <li><span class="abs-no">(2)</span><p>Bei Straftaten oder Korruptionsverdacht erfolgt eine unabhängige interne Prüfung durch eine unbeteiligte Person; die betroffene Person kann währenddessen vorübergehend suspendiert werden, ohne dass dies bereits eine Schuldfeststellung wäre.</p></li>
-        <li><span class="abs-no">(3)</span><p>Die Entscheidung über Maßnahmen trifft die Leitung; bei Richtern entscheidet die Richterschaft gemeinsam mit der Leitung.</p></li>
-      </ol>
-    </section>
-
-    <!-- TEIL B -->
-    <div class="part-divider" id="teil-b">
-      <span class="part-tag">TEIL B</span>
-      <h2>Interne Regelungen &amp; Infrastruktur</h2>
-      <span class="rule"></span>
-    </div>
-    <p class="part-intro">Organisation, Systeme und Räumlichkeiten, mit denen das DOJ arbeitet.</p>
-
-    <section class="paragraph" id="p8">
-      <div class="p-head"><span class="p-num">§ 8</span><h3>Organisation und Kommunikationswege</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Das Department of Justice gliedert sich in Leitung, Staatsanwaltschaft, Richterschaft und Rechtsanwaltschaft.</p></li>
-        <li><span class="abs-no">(2)</span><p>Interne Kommunikation erfolgt über die dafür vorgesehenen digitalen Kanäle des DOJ; dienstliche Anliegen werden grundsätzlich nicht über private Kanäle abgewickelt.</p></li>
-        <li><span class="abs-no">(3)</span><p>Jede Abteilung benennt eine Ansprechperson für abteilungsübergreifende Anliegen.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p9">
-      <div class="p-head"><span class="p-num">§ 9</span><h3>Aktenführung und Dokumentenverwaltung</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Alle Akten, Anklageschriften, Beschlüsse und Urteile werden im dafür vorgesehenen Aktenverwaltungssystem digital geführt.</p></li>
-        <li><span class="abs-no">(2)</span><p>Jede Akte erhält eine eindeutige Aktennummer; Änderungen sind mit Datum, Uhrzeit und bearbeitender Person zu kennzeichnen.</p></li>
-        <li><span class="abs-no">(3)</span><p>Abgeschlossene Verfahren werden archiviert und bleiben nachvollziehbar abrufbar, sofern kein berechtigtes Löschinteresse besteht.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p10">
-      <div class="p-head"><span class="p-num">§ 10</span><h3>Kommunikationsmittel</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Für die Kommunikation mit Exekutivbehörden stehen Funk und Telefon zur Verfügung; deren Nutzung erfolgt nach den allgemeinen Funkregeln der Stadt.</p></li>
-        <li><span class="abs-no">(2)</span><p>Interne, nicht öffentliche Angelegenheiten werden über geschützte Kanäle besprochen, die nur berechtigten Mitgliedern zugänglich sind.</p></li>
-        <li><span class="abs-no">(3)</span><p>Der Gerichtssaal-Kanal ist ausschließlich für die Durchführung und Vorbereitung von Verhandlungen zu nutzen.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p11">
-      <div class="p-head"><span class="p-num">§ 11</span><h3>Zugriffsrechte und Datenschutz</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Der Zugriff auf Akten und interne Systeme ist nach Rang und Zuständigkeit gestaffelt; Anwärter erhalten nur die für ihre Ausbildung notwendigen Rechte.</p></li>
-        <li><span class="abs-no">(2)</span><p>Zugriffe auf laufende Verfahren werden protokolliert und sind bei Bedarf durch die Leitung überprüfbar.</p></li>
-        <li><span class="abs-no">(3)</span><p>Personenbezogene Daten aus Akten dürfen ausschließlich zu dienstlichen Zwecken verwendet und nicht an Unbefugte weitergegeben werden.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p12">
-      <div class="p-head"><span class="p-num">§ 12</span><h3>Räumlichkeiten und Ausstattung</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Für Verhandlungen steht der Gerichtssaal zur Verfügung; für vertrauliche Gespräche und Beratungen die Besprechungsräume von Leitung, Staatsanwaltschaft und Rechtsanwaltschaft.</p></li>
-        <li><span class="abs-no">(2)</span><p>Das Aktenarchiv ist nur berechtigten Mitgliedern zugänglich und vor Ort zu sichern.</p></li>
-        <li><span class="abs-no">(3)</span><p>Dienstausweise sind bei Bedarf vorzuzeigen und identifizieren das Mitglied gegenüber Bürgern und Behörden.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p13">
-      <div class="p-head"><span class="p-num">§ 13</span><h3>IT-Sicherheit und Protokollierung</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Zugangsdaten zu internen Systemen sind geheim zu halten und nicht an Dritte weiterzugeben.</p></li>
-        <li><span class="abs-no">(2)</span><p>Der Verlust von Zugangsdaten oder Anzeichen für unbefugten Zugriff sind der Leitung unverzüglich zu melden.</p></li>
-        <li><span class="abs-no">(3)</span><p>Systemzugriffe werden protokolliert; Missbrauch wird nach § 7 geahndet.</p></li>
-      </ol>
-    </section>
-
-    <!-- TEIL C -->
-    <div class="part-divider" id="teil-c">
-      <span class="part-tag">TEIL C</span>
-      <h2>Aufgabenbereiche</h2>
-      <span class="rule"></span>
-    </div>
-    <p class="part-intro">Zuständigkeiten der einzelnen Abteilungen im Tagesbetrieb.</p>
-
-    <section class="paragraph" id="p14">
-      <div class="p-head"><span class="p-num">§ 14</span><h3>Leitung</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Generalstaatsanwalt und Stellvertreter tragen die Gesamtverantwortung für Organisation, Außenvertretung und Personalentscheidungen innerhalb Staatsanwaltschaft und Rechtsanwaltschaft.</p></li>
-        <li><span class="abs-no">(2)</span><p>Sie erlassen interne Verordnungen zur Organisation des Departments, soweit diese nicht geltendem Recht widersprechen.</p></li>
-        <li><span class="abs-no">(3)</span><p>Sie nehmen keinen Einfluss auf richterliche Entscheidungen; bei Personalentscheidungen innerhalb der Richterschaft wirken sie gemeinsam mit den Richtern mit.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p15">
-      <div class="p-head"><span class="p-num">§ 15</span><h3>Staatsanwaltschaft</h3></div>
-      <div class="task-table">
-        <div class="task-row"><div class="role">Kernaufgaben</div>
-          <ul>
-            <li>Prüfung eingehender Ermittlungsakten auf hinreichenden Tatverdacht</li>
-            <li>Beantragung von Haftbefehlen und Durchsuchungsbeschlüssen bei der Richterschaft</li>
-            <li>Erhebung der Anklage und Vertretung der Anklage in der Verhandlung</li>
-            <li>Rechtliche Beratung der Exekutivbehörden bei laufenden Ermittlungen</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="paragraph" id="p16">
-      <div class="p-head"><span class="p-num">§ 16</span><h3>Richterschaft</h3></div>
-      <div class="task-table">
-        <div class="task-row"><div class="role">Kernaufgaben</div>
-          <ul>
-            <li>Prüfung und Genehmigung bzw. Ablehnung von Haftbefehlen und Durchsuchungsbeschlüssen</li>
-            <li>Leitung von Gerichtsverhandlungen und Verkündung begründeter Urteile</li>
-            <li>Bearbeitung von Berufungen gegen erstinstanzliche Entscheidungen</li>
-            <li>Entscheidung — gemeinsam mit den übrigen Richtern und der Leitung — über Einstellung, Beförderung, Suspendierung und Entlassung innerhalb der Richterschaft</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="paragraph" id="p17">
-      <div class="p-head"><span class="p-num">§ 17</span><h3>Rechtsanwaltschaft</h3></div>
-      <div class="task-table">
-        <div class="task-row"><div class="role">Kernaufgaben</div>
-          <ul>
-            <li>Beratung und Vertretung von Bürgern in straf- und zivilrechtlichen Angelegenheiten</li>
-            <li>Beantragung von Akteneinsicht für die eigene Mandantschaft</li>
-            <li>Vertretung der Mandantschaft in Gerichtsverhandlungen</li>
-            <li>Unterstützung von Bürgern bei Beschwerde- und Berufungsverfahren</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="paragraph" id="p18">
-      <div class="p-head"><span class="p-num">§ 18</span><h3>Übergreifende Aufgaben und Zusammenarbeit</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Alle Abteilungen wirken auf Anfrage der Leitung an der Ausarbeitung und Überarbeitung von Gesetzesentwürfen mit.</p></li>
-        <li><span class="abs-no">(2)</span><p>Die Zusammenarbeit mit Exekutivbehörden erfolgt unter klarer Trennung der Zuständigkeiten: Ermittlungen, Festnahmen und Maßnahmen obliegen den Exekutivbehörden, rechtliche Bewertung, Anklageerhebung und gerichtliche Bearbeitung dem Department of Justice.</p></li>
-        <li><span class="abs-no">(3)</span><p>Abteilungsübergreifende Konflikte werden zunächst zwischen den zuständigen Ansprechpersonen (§ 8 Abs. 3) geklärt; bei Bedarf entscheidet die Leitung.</p></li>
-      </ol>
-    </section>
-
-    <!-- TEIL D -->
-    <div class="part-divider" id="teil-d">
-      <span class="part-tag">TEIL D</span>
-      <h2>Schlussbestimmungen</h2>
-      <span class="rule"></span>
-    </div>
-
-    <section class="paragraph" id="p19">
-      <div class="p-head"><span class="p-num">§ 19</span><h3>Änderungen dieser Dienstregeln</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Änderungen dieser Dienstregeln kann die Leitung beschließen, sofern sie nicht geltendem Recht widersprechen.</p></li>
-        <li><span class="abs-no">(2)</span><p>Änderungen mit Auswirkung auf die Richterschaft bedürfen deren Zustimmung.</p></li>
-        <li><span class="abs-no">(3)</span><p>Alle Mitglieder werden über Änderungen zeitnah informiert.</p></li>
-      </ol>
-    </section>
-
-    <section class="paragraph" id="p20">
-      <div class="p-head"><span class="p-num">§ 20</span><h3>Inkrafttreten</h3></div>
-      <ol class="absatz-list">
-        <li><span class="abs-no">(1)</span><p>Diese Dienstregeln treten mit Bekanntgabe in Kraft und gelten bis zu ihrer Änderung oder Aufhebung.</p></li>
-      </ol>
-    </section>
-
-    <footer class="doc-end">Dienstregeln des Department of Justice · Fassung 12. August 2026</footer>
-  </main>
-</div>
-
-<script>
-  (function(){
-    var toggle = document.getElementById('navToggle');
-    var sidebar = document.getElementById('sidebar');
-    var scrim = document.getElementById('scrim');
-    function closeNav(){
-      sidebar.classList.remove('open');
-      scrim.classList.remove('open');
-      toggle.setAttribute('aria-expanded','false');
-    }
-    toggle.addEventListener('click', function(){
-      var open = sidebar.classList.toggle('open');
-      scrim.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    scrim.addEventListener('click', closeNav);
-    sidebar.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', closeNav);
-    });
-
-    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
-    var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
-    var byId = {};
-    links.forEach(function(a, i){ byId[sections[i].id] = a; });
-
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        var link = byId[entry.target.id];
-        if(!link) return;
-        if(entry.isIntersecting){
-          links.forEach(function(l){ l.classList.remove('active'); });
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
-
-    sections.forEach(function(s){ if(s) observer.observe(s); });
-  })();
-</script>
+    <footer>Department of Justice · Fassung 12. August 2026</footer>
+  </div>
+</body>
+</html>
