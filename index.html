@@ -37,7 +37,7 @@
     display:flex; align-items:center; justify-content:center;
     padding: 4rem 5vw;
   }
-  .hub{ max-width: 760px; width:100%; }
+  .hub{ max-width: 940px; width:100%; }
   .eyebrow{
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
     font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
@@ -49,8 +49,8 @@
     line-height: 1.15; margin: .6rem 0 .75rem; text-wrap: balance; font-weight: 700;
   }
   .lede{ color: var(--ink-soft); font-size: 1.05rem; max-width: 34em; margin: 0 0 3rem; }
-  .cards{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  @media (max-width: 620px){ .cards{ grid-template-columns: 1fr; } }
+  .cards{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 860px){ .cards{ grid-template-columns: 1fr; } }
   .card{
     display:block; background: var(--paper); border: 1px solid var(--line);
     border-radius: 14px; padding: 1.75rem; text-decoration:none; color: var(--ink);
@@ -75,7 +75,7 @@
   <div class="hub">
     <div class="eyebrow">Department of Justice</div>
     <h1>Rechtsdokumente</h1>
-    <p class="lede">Die Satzung bildet die rechtliche Grundordnung des Department of Justice; die Dienstregeln regeln den operativen Dienstbetrieb darauf aufbauend.</p>
+    <p class="lede">Die Satzung bildet die rechtliche Grundordnung des Department of Justice; die Dienstregeln regeln den operativen Dienstbetrieb darauf aufbauend; Kongressbildung regelt die Rolle des DOJ bei der Gründung der Legislative.</p>
     <div class="cards">
       <a class="card" href="satzung/">
         <div class="tag">Grundordnung</div>
@@ -86,6 +86,11 @@
         <div class="tag">Internes Regelwerk</div>
         <h2>Dienstregeln</h2>
         <p>Dienstverhalten, interne Organisation, Infrastruktur und Aufgabenbereiche.</p>
+      </a>
+      <a class="card" href="kongressbildung/">
+        <div class="tag">Verfahrensordnung</div>
+        <h2>Kongressbildung</h2>
+        <p>Einleitung und Begleitung der Kongressgründung; automatische Mitgliedschaft des Generalstaatsanwalts.</p>
       </a>
     </div>
     <footer>Department of Justice · Fassung 12. August 2026</footer>

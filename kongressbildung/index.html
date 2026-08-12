@@ -1,0 +1,641 @@
+<title>Kongressbildung — Department of Justice</title>
+
+<style>
+  :root{
+    --bg: #f6f3ec;
+    --paper: #fffdf9;
+    --ink: #1f2430;
+    --ink-soft: #4b5163;
+    --muted: #7a7f8c;
+    --line: rgba(31,36,48,0.12);
+    --line-strong: rgba(31,36,48,0.22);
+    --accent: #8a6a2f;
+    --accent-strong: #6b5122;
+    --accent-tint: rgba(138,106,47,0.10);
+    --accent-tint-strong: rgba(138,106,47,0.18);
+    --chip-bg: rgba(31,36,48,0.06);
+    --shadow: rgba(31,25,10,0.10);
+    --sidebar-bg: #efe9dc;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #14161c;
+      --paper: #1a1d25;
+      --ink: #e9e6de;
+      --ink-soft: #c2c3ca;
+      --muted: #8c8f9c;
+      --line: rgba(233,230,222,0.12);
+      --line-strong: rgba(233,230,222,0.22);
+      --accent: #cda155;
+      --accent-strong: #e0b46c;
+      --accent-tint: rgba(205,161,85,0.12);
+      --accent-tint-strong: rgba(205,161,85,0.2);
+      --chip-bg: rgba(233,230,222,0.08);
+      --shadow: rgba(0,0,0,0.4);
+      --sidebar-bg: #191b22;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #14161c;
+    --paper: #1a1d25;
+    --ink: #e9e6de;
+    --ink-soft: #c2c3ca;
+    --muted: #8c8f9c;
+    --line: rgba(233,230,222,0.12);
+    --line-strong: rgba(233,230,222,0.22);
+    --accent: #cda155;
+    --accent-strong: #e0b46c;
+    --accent-tint: rgba(205,161,85,0.12);
+    --accent-tint-strong: rgba(205,161,85,0.2);
+    --chip-bg: rgba(233,230,222,0.08);
+    --shadow: rgba(0,0,0,0.4);
+    --sidebar-bg: #191b22;
+  }
+
+  *{ box-sizing: border-box; }
+  html{
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar{ display:none; width:0; height:0; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } *{ transition: none !important; animation: none !important; } }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .shell{
+    display: grid;
+    grid-template-columns: 300px minmax(0,1fr);
+    min-height: 100vh;
+  }
+
+  .sidebar{
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--line);
+    padding: 2.5rem 1.75rem 3rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .sidebar::-webkit-scrollbar{ display:none; width:0; height:0; }
+  .brand{
+    display:flex;
+    align-items:flex-start;
+    gap:.85rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand-mark{
+    flex: none;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 3px;
+    background: linear-gradient(160deg, var(--accent), var(--accent-strong));
+    color: var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .brand-text .eyebrow{
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .brand-text .title{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: .15rem;
+  }
+
+  nav.toc{ font-size: .9rem; }
+  .toc-part{ margin-bottom: 2.35rem; }
+  .toc-part-label{
+    display:flex;
+    align-items:baseline;
+    gap:.5rem;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 700;
+    margin-bottom: .8rem;
+  }
+  .toc-part-label .part-title{
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    text-transform: none;
+    font-weight: 600;
+  }
+  .toc ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.15rem; }
+  .toc li{ margin: 0; }
+  .toc a{
+    display:flex;
+    gap:.55rem;
+    align-items:baseline;
+    padding: .5rem .6rem;
+    margin-left: -.6rem;
+    border-radius: 6px;
+    color: var(--ink-soft);
+    text-decoration:none;
+    line-height: 1.4;
+    transition: background-color .15s, color .15s;
+  }
+  .toc a .sec-no{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    color: var(--muted);
+    font-size: .82em;
+    flex: none;
+  }
+  .toc a:hover{ background: var(--chip-bg); color: var(--ink); }
+  .toc a:focus-visible{ outline: 2px solid var(--accent); outline-offset: 1px; }
+  .toc a.active{
+    background: var(--accent-tint-strong);
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .toc a.active .sec-no{ color: var(--accent-strong); }
+
+  .sidebar-foot{
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: .72rem;
+    color: var(--muted);
+  }
+  .sidebar-foot a{ color: var(--accent-strong); text-decoration: underline; text-decoration-color: var(--accent-tint-strong); }
+  .sidebar-foot a:hover{ text-decoration-color: var(--accent-strong); }
+
+  main{
+    padding: 4.5rem 5vw 8rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .cover{
+    margin-bottom: 3rem;
+    padding-bottom: 2.75rem;
+    border-bottom: 2px solid var(--line-strong);
+  }
+  .cover .eyebrow{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+  h1.doc-title{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
+    line-height: 1.15;
+    margin: .6rem 0 .9rem;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  .cover .lede{
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 36em;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap: wrap;
+    gap: .6rem 2rem;
+    margin-top: 1.75rem;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .meta-row strong{ color: var(--ink-soft); font-weight: 600; }
+
+  .part-divider{
+    display:flex;
+    align-items:center;
+    gap: 1.1rem;
+    margin: 5.5rem 0 .75rem;
+  }
+  .part-divider:first-of-type{ margin-top: 0; }
+  .part-divider .part-tag{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    color: var(--paper);
+    background: var(--accent);
+    padding: .3rem .65rem;
+    border-radius: 3px;
+    flex: none;
+  }
+  .part-divider h2{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink);
+  }
+  .part-divider .rule{ flex:1; height:1px; background: var(--line-strong); }
+  .part-intro{
+    color: var(--muted);
+    font-size: .95rem;
+    margin: 0 0 2.5rem;
+    max-width: 36em;
+  }
+
+  section.paragraph{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 2.25rem 2.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px var(--shadow);
+    scroll-margin-top: 2rem;
+  }
+
+  .p-head{
+    display:flex;
+    align-items: baseline;
+    gap: .85rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .p-num{
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    color: var(--accent-strong);
+    font-size: 1.1rem;
+    flex: none;
+  }
+  .p-head h3{
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .absatz-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+  .absatz-list li{
+    display: flex;
+    gap: .8rem;
+  }
+  .absatz-list .abs-no{
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    color: var(--muted);
+    font-size: .85em;
+    flex: none;
+    padding-top: .1em;
+  }
+  .absatz-list p{ margin: 0; color: var(--ink); max-width: 74ch; }
+  .absatz-list a{ color: var(--accent-strong); text-decoration: underline; text-decoration-color: var(--accent-tint-strong); }
+  .absatz-list a:hover{ text-decoration-color: var(--accent-strong); }
+
+  .maxim{
+    display:inline-block;
+    margin-left: .4em;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  footer.doc-end{
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--line-strong);
+    color: var(--muted);
+    font-size: .85rem;
+  }
+
+  .mobile-toggle{ display:none; }
+  .scrim{ display:none; }
+
+  @media (max-width: 860px){
+    .shell{ grid-template-columns: 1fr; }
+    .sidebar{
+      position: fixed;
+      inset: 0 30% 0 0;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform .2s ease;
+      box-shadow: 4px 0 24px var(--shadow);
+    }
+    .sidebar.open{ transform: translateX(0); }
+    .mobile-toggle{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: .9rem 4vw;
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .scrim.open{
+      display:block;
+      position: fixed; inset:0; z-index: 15;
+      background: rgba(0,0,0,.35);
+    }
+    main{ padding: 2rem 6vw 6rem; }
+    section.paragraph{ padding: 1.6rem 1.4rem; }
+  }
+</style>
+
+<div class="shell">
+  <button class="mobile-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">☰ Inhaltsverzeichnis</button>
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">⚖</div>
+      <div class="brand-text">
+        <div class="eyebrow">Department of Justice</div>
+        <div class="title">Kongressbildung</div>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Inhaltsverzeichnis">
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Teil A</span><span class="part-title">Grundlagen</span></div>
+        <ul>
+          <li><a href="#p1"><span class="sec-no">§ 1</span> Zweck des Kongresses</a></li>
+          <li><a href="#p2"><span class="sec-no">§ 2</span> Rolle des DOJ</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Teil B</span><span class="part-title">Einleitung</span></div>
+        <ul>
+          <li><a href="#p3"><span class="sec-no">§ 3</span> Initiativrecht</a></li>
+          <li><a href="#p4"><span class="sec-no">§ 4</span> Antrag</a></li>
+          <li><a href="#p5"><span class="sec-no">§ 5</span> Gründungsausschuss</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Teil C</span><span class="part-title">Begleitung</span></div>
+        <ul>
+          <li><a href="#p6"><span class="sec-no">§ 6</span> Rechtliche Beratung</a></li>
+          <li><a href="#p7"><span class="sec-no">§ 7</span> Administrative Unterstützung</a></li>
+          <li><a href="#p8"><span class="sec-no">§ 8</span> Übergangsregelung</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Teil D</span><span class="part-title">Der Generalstaatsanwalt im Kongress</span></div>
+        <ul>
+          <li><a href="#p9"><span class="sec-no">§ 9</span> Automatische Mitgliedschaft</a></li>
+          <li><a href="#p10"><span class="sec-no">§ 10</span> Vertretung</a></li>
+          <li><a href="#p11"><span class="sec-no">§ 11</span> Stimmrecht &amp; Neutralität</a></li>
+          <li><a href="#p12"><span class="sec-no">§ 12</span> Verhältnis zur Unabhängigkeit</a></li>
+        </ul>
+      </div>
+
+      <div class="toc-part">
+        <div class="toc-part-label"><span>Teil E</span><span class="part-title">Schlussbestimmungen</span></div>
+        <ul>
+          <li><a href="#p13"><span class="sec-no">§ 13</span> Änderungen</a></li>
+          <li><a href="#p14"><span class="sec-no">§ 14</span> Inkrafttreten</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sidebar-foot">Ergänzt die <a href="../satzung/">Satzung</a> um die Rolle des DOJ bei der Bildung der Legislative.</div>
+  </aside>
+
+  <main>
+    <div class="cover">
+      <div class="eyebrow">Verfahrensordnung</div>
+      <h1 class="doc-title">Kongressbildung</h1>
+      <p class="lede">Wie das Department of Justice die Bildung des Kongresses als gesetzgebende Körperschaft der Stadt einleiten und begleiten kann — und welche Rolle der Generalstaatsanwalt darin einnimmt.</p>
+      <div class="meta-row">
+        <span><strong>Fassung:</strong> 12. August 2026</span>
+        <span><strong>Bezug:</strong> Art. 1 &amp; Art. 13 der Satzung</span>
+        <span><strong>Herausgeber:</strong> Leitung des Department of Justice</span>
+      </div>
+    </div>
+
+    <!-- TEIL A -->
+    <div class="part-divider" id="teil-a">
+      <span class="part-tag">TEIL A</span>
+      <h2>Grundlagen</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Der Kongress als eigenständiges gesetzgebendes Organ neben Exekutive und Judikative.</p>
+
+    <section class="paragraph" id="p1">
+      <div class="p-head"><span class="p-num">§ 1</span><h3>Zweck des Kongresses</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Der Kongress ist die gesetzgebende Körperschaft der Stadt. Er berät und beschließt die Gesetze der Stadt, die das Department of Justice nach Art. 1 der Satzung einheitlich auslegt und anwendet.</p></li>
+        <li><span class="abs-no">(2)</span><p>Mit seiner Bildung wird die gesetzgeberische Zuständigkeit von der Regierung auf den Kongress übertragen; die Regierung bleibt Exekutivorgan.</p></li>
+        <li><span class="abs-no">(3)</span><p>Der Kongress ist in seiner Beschlussfassung unabhängig von Regierung und Department of Justice.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p2">
+      <div class="p-head"><span class="p-num">§ 2</span><h3>Rolle des Department of Justice</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Das Department of Justice ist nicht Organ des Kongresses. Es wirkt jedoch nach Maßgabe dieser Verfahrensordnung an dessen Bildung mit und begleitet den Aufbau rechtlich.</p></li>
+        <li><span class="abs-no">(2)</span><p>Die Mitwirkung des Department of Justice beschränkt sich auf die Gründungsphase; sie begründet keine Zuständigkeit für die spätere Tätigkeit des Kongresses.</p></li>
+      </ol>
+    </section>
+
+    <!-- TEIL B -->
+    <div class="part-divider" id="teil-b">
+      <span class="part-tag">TEIL B</span>
+      <h2>Einleitung der Kongressbildung</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Wie das Department of Justice das Verfahren anstoßen kann.</p>
+
+    <section class="paragraph" id="p3">
+      <div class="p-head"><span class="p-num">§ 3</span><h3>Initiativrecht</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Leitung des Department of Justice kann bei der Regierung die Einleitung eines Verfahrens zur Bildung des Kongresses beantragen.</p></li>
+        <li><span class="abs-no">(2)</span><p>Ein Antrag kommt insbesondere in Betracht, wenn wiederholt Unklarheiten oder Lücken in den Gesetzen der Stadt festgestellt werden, die eine eigenständige gesetzgebende Körperschaft erfordern, oder wenn die Regierung selbst um Unterstützung bei der Gründung bittet.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p4">
+      <div class="p-head"><span class="p-num">§ 4</span><h3>Antrag</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Der Antrag ist schriftlich zu stellen und zu begründen.</p></li>
+        <li><span class="abs-no">(2)</span><p>Nach Zustimmung der Regierung wird die Einleitung den betroffenen Behörden bekanntgegeben.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p5">
+      <div class="p-head"><span class="p-num">§ 5</span><h3>Gründungsausschuss</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Nach Zustimmung der Regierung bilden das Department of Justice und die Regierung gemeinsam einen Gründungsausschuss.</p></li>
+        <li><span class="abs-no">(2)</span><p>Der Gründungsausschuss organisiert den Aufbau des Kongresses, insbesondere Sitzverteilung, Wahl- oder Berufungsverfahren und Geschäftsordnung.</p></li>
+        <li><span class="abs-no">(3)</span><p>Der Gründungsausschuss löst sich mit der Konstituierung des Kongresses auf.</p></li>
+      </ol>
+    </section>
+
+    <!-- TEIL C -->
+    <div class="part-divider" id="teil-c">
+      <span class="part-tag">TEIL C</span>
+      <h2>Begleitung durch das DOJ</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Unterstützung während der Gründungsphase.</p>
+
+    <section class="paragraph" id="p6">
+      <div class="p-head"><span class="p-num">§ 6</span><h3>Rechtliche Beratung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Das Department of Justice berät den Gründungsausschuss bei der rechtlichen Ausgestaltung der Geschäftsordnung des Kongresses.</p></li>
+        <li><span class="abs-no">(2)</span><p>Es prüft die Gründungsdokumente auf Vereinbarkeit mit den geltenden Gesetzen der Stadt, ohne inhaltlichen Einfluss auf politische Entscheidungen des Gründungsausschusses zu nehmen.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p7">
+      <div class="p-head"><span class="p-num">§ 7</span><h3>Administrative Unterstützung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Kanzlei des Department of Justice kann in der Gründungsphase administrative Unterstützung leisten, insbesondere Terminplanung und Dokumentation.</p></li>
+        <li><span class="abs-no">(2)</span><p>Diese Unterstützung endet, sobald der Kongress eine eigene Verwaltung eingerichtet hat.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p8">
+      <div class="p-head"><span class="p-num">§ 8</span><h3>Übergangsregelung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Bis zur Konstituierung des Kongresses bleiben die bestehenden Gesetze der Stadt sowie die bisherige gesetzgeberische Zuständigkeit der Regierung unberührt.</p></li>
+        <li><span class="abs-no">(2)</span><p>Anträge auf Gesetzesänderungen werden bis dahin weiterhin nach Art. 1 der Satzung bearbeitet.</p></li>
+      </ol>
+    </section>
+
+    <!-- TEIL D -->
+    <div class="part-divider" id="teil-d">
+      <span class="part-tag">TEIL D</span>
+      <h2>Der Generalstaatsanwalt im Kongress</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="part-intro">Die automatische Mitgliedschaft und ihre Grenzen.</p>
+
+    <section class="paragraph" id="p9">
+      <div class="p-head"><span class="p-num">§ 9</span><h3>Automatische Mitgliedschaft</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Der Generalstaatsanwalt ist kraft seines Amtes zugleich Mitglied des Kongresses, ohne dass es einer Wahl oder Berufung bedarf.<span class="maxim">(geborenes Mitglied)</span></p></li>
+        <li><span class="abs-no">(2)</span><p>Diese Mitgliedschaft besteht für die Dauer der Amtszeit als Generalstaatsanwalt und endet mit deren Ende, ohne dass es eines gesonderten Ausschlusses aus dem Kongress bedarf.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p10">
+      <div class="p-head"><span class="p-num">§ 10</span><h3>Vertretung</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Ist der Generalstaatsanwalt an der Wahrnehmung dieses Sitzes verhindert, nimmt der Stellvertretende Generalstaatsanwalt die damit verbundenen Rechte wahr.</p></li>
+        <li><span class="abs-no">(2)</span><p>Die Sonderregel zur interimistischen Bekleidung eines richterlichen Amtes (Art. 7 Abs. 4 der Satzung) bleibt von Absatz 1 unberührt und wird durch ihn nicht erweitert; sie gilt weiterhin ausschließlich für den Generalstaatsanwalt persönlich.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p11">
+      <div class="p-head"><span class="p-num">§ 11</span><h3>Stimmrecht und Neutralität</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Der Generalstaatsanwalt übt sein Stimmrecht im Kongress unabhängig von Weisungen der Regierung aus.</p></li>
+        <li><span class="abs-no">(2)</span><p>Er ist von der Mitwirkung und Abstimmung bei einer Gesetzesvorlage ausgeschlossen, wenn diese ein konkretes, beim Department of Justice laufendes Verfahren unmittelbar betrifft; Art. 5 der Satzung gilt entsprechend.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p12">
+      <div class="p-head"><span class="p-num">§ 12</span><h3>Verhältnis zur Unabhängigkeit des DOJ</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Die Mitgliedschaft im Kongress berührt nicht die Unabhängigkeit der Staatsanwaltschaft und der Richterschaft nach Art. 1 der Satzung.</p></li>
+        <li><span class="abs-no">(2)</span><p>Der Generalstaatsanwalt nimmt in seiner Rolle als Kongressmitglied keinen Einfluss auf staatsanwaltliche oder richterliche Einzelentscheidungen; umgekehrt nehmen Staatsanwaltschaft und Richterschaft keinen Einfluss auf sein Abstimmungsverhalten im Kongress.</p></li>
+      </ol>
+    </section>
+
+    <!-- TEIL E -->
+    <div class="part-divider" id="teil-e">
+      <span class="part-tag">TEIL E</span>
+      <h2>Schlussbestimmungen</h2>
+      <span class="rule"></span>
+    </div>
+
+    <section class="paragraph" id="p13">
+      <div class="p-head"><span class="p-num">§ 13</span><h3>Änderungen</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Änderungen dieser Verfahrensordnung kann die Leitung des Department of Justice im Einvernehmen mit der Regierung beschließen.</p></li>
+        <li><span class="abs-no">(2)</span><p>Nach Konstituierung des Kongresses bedürfen Änderungen von Teil D zusätzlich der Zustimmung des Kongresses.</p></li>
+      </ol>
+    </section>
+
+    <section class="paragraph" id="p14">
+      <div class="p-head"><span class="p-num">§ 14</span><h3>Inkrafttreten</h3></div>
+      <ol class="absatz-list">
+        <li><span class="abs-no">(1)</span><p>Diese Verfahrensordnung tritt mit Bekanntgabe in Kraft und gilt bis zu ihrer Änderung oder Aufhebung.</p></li>
+      </ol>
+    </section>
+
+    <footer class="doc-end">Kongressbildung · Verfahrensordnung des Department of Justice · Fassung 12. August 2026</footer>
+  </main>
+</div>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var sidebar = document.getElementById('sidebar');
+    var scrim = document.getElementById('scrim');
+    function closeNav(){
+      sidebar.classList.remove('open');
+      scrim.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+    toggle.addEventListener('click', function(){
+      var open = sidebar.classList.toggle('open');
+      scrim.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    scrim.addEventListener('click', closeNav);
+    sidebar.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeNav);
+    });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+    var byId = {};
+    links.forEach(function(a, i){ if(sections[i]) byId[sections[i].id] = a; });
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var link = byId[entry.target.id];
+        if(!link) return;
+        if(entry.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+
+    sections.forEach(function(s){ if(s) observer.observe(s); });
+  })();
+</script>
